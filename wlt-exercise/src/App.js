@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <HashRouter>
-        <div className="container-fliod App">
+        <div className="container-fluid App">
           <Route exact={true} path="/" component={ListView} />
           <Route exact={true} path="/history" component={RateHistory} />
         </div>
