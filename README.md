@@ -27,7 +27,7 @@ We started the setup of this on Bootstrap, but you may omit this if you're not f
 # Instructions
 Fork (do not clone) this repo and when you are done, supply me the GitHub URL (make sure it’s public) and I will clone that repository.
 
-You are tasked to create two pages that consume an API that shows currency rates. Documentation for this API can be found (here)[https://ratesapi.io/documentation/]. This is a fairly simple API that you need to consume using Axios. How you go about consuming this API is up to you. There are three types of API endpoint styles of concern here;
+You are tasked to create two pages that consume an API that shows currency rates. Documentation for this API can be found [here](https://ratesapi.io/documentation/). This is a fairly simple API that you need to consume using Axios. How you go about consuming this API is up to you. There are three types of API endpoint styles of concern here;
 
 ```
 https://api.ratesapi.io/api/latest
@@ -56,14 +56,14 @@ Also this page should allow the user to filter which currencies they can see, fo
 
 I will prefer that I can select the new base currency and the table automatically updates and the same for when I filter what currencies I want to see. But I will accept needing to press a “submit” button to apply filters.
 
-How you go about this is entirely up to you, although I recommend you start with how React handles form items which can be read up on (here)[https://reactjs.org/docs/forms.html]. How you want to display all of this data is also your call.
+How you go about this is entirely up to you, although I recommend you start with how React handles form items which can be read up on [here](https://reactjs.org/docs/forms.html). How you want to display all of this data is also your call.
 
 ## RateHistory.js
 BONUS - You do not have to develop this page and not doing so will not come with a penalty. This page will be moderately more challenging. Completing this will tell me a lot about your React abilities.
 
 You will visit this page from the `ListView.js` file. Clicking on an item displayed there will come to here it should retain what the selected base currency was and the counter currency clicked on. This page will display a form to select a date range and use the APIs ability to get daily rates and display each day within the range selected. The trick here is that the API only allows for 1 day per call, so for the range you will need to call the API once per day, for a large date range, this could potentially cause a slowdown, so you may need to tell the user “I’m working on it” or try to display each date as they are made available, taking advantage of axios’ promise based system and as each call is made, you can add to the view.
 
-You may want to use route params or you can use the npm install (query-string)[https://www.npmjs.com/package/query-string] to help you pass information to this page.
+You may want to use route params or you can use the npm install [query-string](https://www.npmjs.com/package/query-string) to help you pass information to this page.
 
 # Conclusion
 
