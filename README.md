@@ -69,4 +69,4 @@ You may want to use route params or you can use the npm install [query-string](h
 
 This is the section I want to hear from you. If you’ve made it this far in the documentation, congratulations. Document here what you were thinking during this exercise. Was it too hard? Too demanding? What was your React experience before this? Depending on how you perform, it’ll tell me more than a silly quiz or white board could ever tell me.
 
-Feel free to provide any feedback but please keep it professional. Keep cursing at a minimum.
+Feel free to provide any feedback but please keep it professional.
