@@ -8,6 +8,7 @@ const Unit = props => {
     alignItems: "center",
     fontSize: "1em",
     background: "rgba(33,33,33,0.6)",
+    color: '#FFF',
     borderRadius: "1.5em",
     padding: "1em",
     margin: "1em"
