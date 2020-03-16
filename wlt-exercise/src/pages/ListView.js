@@ -10,6 +10,7 @@ import {
   Button,
   CardText,
   Modal,
+<<<<<<< HEAD
   ModalHeader
 } from "reactstrap";
 import Moment from "react-moment";
@@ -18,6 +19,16 @@ import Filter from "../components/filters";
 import symbols from "../constants/symbols";
 import Sign from "../components/sign";
 import { ExcludedContext } from "../includedContext";
+=======
+  ModalHeader,
+  FormGroup,
+  Input,
+} from "reactstrap";
+import Moment from "react-moment";
+import Unit from "../components/unit";
+import symbols from "../constants/symbols";
+import Sign from "../components/sign";
+>>>>>>> daf6b7ddee426d60f9efd3bf1586af1971a10a6c
 
 class ListView extends Component {
   static contextType = ExcludedContext;
@@ -29,6 +40,8 @@ class ListView extends Component {
       rateData: {},
       modal: false,
       currentSymbol: "EUR"
+      collapse: true,
+      custom: ""
     };
     this.axios = axios;
     this.setBase = this.setBase.bind(this);
@@ -45,6 +58,10 @@ class ListView extends Component {
       .catch(err => {
         this.setState({ hasError: true, error: err });
       });
+  }
+
+  toggleCollapse() {
+    this.setState({ collapse: !this.state.collapse });
   }
 
   // trackSymbols(data) {
@@ -103,7 +120,7 @@ class ListView extends Component {
       Object.entries(this.state.rateData).length === 0
     ) {
       return (
-        <Card>
+        <Card style={{padding: '2em'}}>
           <CardTitle>Info:</CardTitle>
           <CardBody>
             <CardHeader>

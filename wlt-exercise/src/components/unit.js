@@ -7,9 +7,9 @@ const Unit = props => {
     flexDirection: "row",
     alignItems: "center",
     fontSize: "1em",
-    background: "rgba(0,40,80,0.7)",
-    borderRadius: "0.5em",
-    color: '#fff',
+    background: "rgba(33,33,33,0.6)",
+    color: '#FFF',
+    borderRadius: "1.5em",
     padding: "1em",
     margin: "1em"
   };
