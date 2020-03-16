@@ -10,8 +10,9 @@ import {
   Button,
   CardText,
   Modal,
-<<<<<<< HEAD
-  ModalHeader
+  ModalHeader,
+  FormGroup,
+  Input,
 } from "reactstrap";
 import Moment from "react-moment";
 import Unit from "../components/unit";
@@ -19,16 +20,6 @@ import Filter from "../components/filters";
 import symbols from "../constants/symbols";
 import Sign from "../components/sign";
 import { ExcludedContext } from "../includedContext";
-=======
-  ModalHeader,
-  FormGroup,
-  Input,
-} from "reactstrap";
-import Moment from "react-moment";
-import Unit from "../components/unit";
-import symbols from "../constants/symbols";
-import Sign from "../components/sign";
->>>>>>> daf6b7ddee426d60f9efd3bf1586af1971a10a6c
 
 class ListView extends Component {
   static contextType = ExcludedContext;
@@ -39,7 +30,7 @@ class ListView extends Component {
       error: {},
       rateData: {},
       modal: false,
-      currentSymbol: "EUR"
+      currentSymbol: "EUR",
       collapse: true,
       custom: ""
     };
@@ -47,14 +38,24 @@ class ListView extends Component {
     this.setBase = this.setBase.bind(this);
     this.showModal = this.showModal.bind(this);
     this.loadData = this.loadData.bind(this);
+    this.toggleCollapse = this.toggleCollapse.bind(this);
   }
 
   loadData() {
     this.axios
-      .get("https://api.ratesapi.io/api/latest")
-      .then(response =>
+      .get(`https://api.ratesapi.io/api/latest?base=${this.state.currentSymbol}`)
+      .then(response => {
+        if(this.excluded.length > 0){
+          const newRates = {};
+          for(const rate in response.data.rates){
+            if(!this.excluded.includes(rate)){
+              newRates[rate] = response.data.rates[rate];
+            }
+          }
+          response.data.rates = newRates;
+        }
         this.setState({ rateData: response.data, modal: false })
-      )
+      })
       .catch(err => {
         this.setState({ hasError: true, error: err });
       });
@@ -63,40 +64,6 @@ class ListView extends Component {
   toggleCollapse() {
     this.setState({ collapse: !this.state.collapse });
   }
-
-  // trackSymbols(data) {
-  //   const keys = Object.keys(data);
-  //   let excluded = []
-  //   for(let k of keys){
-  //     if(data[k]){
-  //       excluded.push(k);
-  //     }
-  //   }
-  //   if (excluded.length > 0) {
-  //     this.axios
-  //       .get(
-  //         `https://api.ratesapi.io/api/latest?base=${this.state.currentSymbol}`
-  //       )
-  //       .then(response => {
-  //         const newArr = []
-  //         const rateKeys = Object.keys(response.data.rates);
-  //         for(let i=0; i< rateKeys.length; i++){
-  //           if(!excluded.includes(rateKeys[i])){
-  //             newArr.push(response.data.rates[rateKeys[i]]);
-  //           }
-  //         }
-  //         this.setState({
-  //           rateData: {
-  //             ...response.data,
-  //             rows: newArr
-  //           }
-  //         });
-  //       })
-  //       .catch(err =>
-  //         this.setState({ hasError: true, error: err, modal: false })
-  //       );
-  //   }
-  // }
 
   setBase(symbol) {
     this.setState({
@@ -195,9 +162,10 @@ class ListView extends Component {
               Current: <Sign type={base} />({base})
             </Button>
             <Filter items={filterItems} setActives={this.trackSymbols} />
+            <Button style={{position:'absolute', right: '1.0625em', zIndex:'99'}} onClick={this.toggleCollapse}><i className={`fas fa-chevron-${this.state.collapse?'down':'up'}`}></i></Button>
             <div>
               {this.state.collapse ? (
-                <Card style={gridStyle}>{formattedRates.splice(0, 3)}</Card>
+                <Card style={gridStyle}>{formattedRates.splice(0, 4)}</Card>
               ) : (
                 <Card style={gridStyle}>{formattedRates}</Card>
               )}

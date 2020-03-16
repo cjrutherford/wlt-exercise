@@ -41,7 +41,7 @@ export const ExcludedProvider = (props) => {
     
       const reducer = (itemStates, { type, payload }) => {
         if (type === "toggle") {
-            return itemStates[payload] = !itemStates[payload];
+            return {...itemStates, [payload]: !itemStates[payload]};
         }
         
       };
