@@ -109,8 +109,7 @@ class ListView extends Component {
       const gridStyle = {
         display: "grid",
         gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
-        gridColumnGrap: "1em",
-        gridRowGrap: "1em"
+        gridGap: '0.0625em'
       };
 
       const {
@@ -124,7 +123,7 @@ class ListView extends Component {
         // formattedRates.push(<Unit key={k} type={k}>{k}: <Unit type={base}>{base} 1 = </Unit>{rates[k]}</Unit>);
         if (!this.excluded.includes(k)) {
           formattedRates.push(
-            <Unit key={k} type={k} conversion={rates[k]} baseType={base}></Unit>
+            <Unit style={{margin:'0.0625em', padding: '0.0625em'}} key={k} type={k} conversion={rates[k]} baseType={base}></Unit>
           );
         }
       }
